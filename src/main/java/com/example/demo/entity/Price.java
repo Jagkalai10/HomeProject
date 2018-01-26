@@ -1,47 +1,65 @@
 package com.example.demo.entity;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 @Entity
 public class Price {
 	
-	@Id
-	int priceid;
-	int price;
-	String pricedesc;
-	int id;
+	@EmbeddedId
+	private PriceKey priceKey;
 	
-	public int getPriceid() {
-		return priceid;
+	public Price() {
+		priceKey = new PriceKey();
 	}
-	public void setPriceid(int priceid) {
-		this.priceid = priceid;
+	
+	@MapsId("itemId")
+	@ManyToOne
+	private Item itemEntity;
+	
+	private Integer priceAmt;
+	private String priceDesc;
+
+	
+	public PriceKey getPriceKey() {
+		return priceKey;
 	}
-	public int getPrice() {
-		return price;
+
+	public void setPriceKey(PriceKey priceKey) {
+		this.priceKey = priceKey;
 	}
-	public void setPrice(int price) {
-		this.price = price;
+
+	public int getPriceAmt() {
+		return priceAmt;
 	}
-	public String getPricedesc() {
-		return pricedesc;
+
+	public void setPriceAmt(int priceAmt) {
+		this.priceAmt = priceAmt;
 	}
-	public void setPricedesc(String pricedesc) {
-		this.pricedesc = pricedesc;
+
+	public String getPriceDesc() {
+		return priceDesc;
 	}
-	public int getId() {
-		return id;
+
+	public void setPriceDesc(String priceDesc) {
+		this.priceDesc = priceDesc;
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public Item getItemEntity() {
+		return itemEntity;
 	}
+
+	public void setItemEntity(Item itemEntity) {
+		this.itemEntity = itemEntity;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Price [priceid=" + priceid + ", price=" + price + ", pricedesc=" + pricedesc + ", id=" + id + "]";
+		return "Price [priceKey=" + priceKey + ", price=" + priceAmt + ", priceDesc=" + priceDesc + "]";
 	}
-	
-	
-	
+
 	
 }

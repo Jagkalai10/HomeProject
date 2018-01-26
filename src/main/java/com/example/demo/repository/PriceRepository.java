@@ -6,11 +6,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Price;
+import com.example.demo.entity.PriceKey;
 
 @Repository
-public interface PriceRepository extends CrudRepository<Price, Integer> {
+public interface PriceRepository extends CrudRepository<Price, PriceKey> {
 	
-	Price findById(int id);
+	//Price findById(int id);
 	
 
 }

@@ -14,6 +14,8 @@ import com.example.demo.repository.PriceRepository;
 
 @SpringBootApplication
 public class SpringTest2Application implements CommandLineRunner{
+	
+	private Logger log = LoggerFactory.getLogger("[Jag command]");
 
 	private ItemRepository itemRepository;
 	
@@ -29,7 +31,6 @@ public class SpringTest2Application implements CommandLineRunner{
 		this.priceRepository = priceRepository;
 	}
 	
-	private Logger log = LoggerFactory.getLogger(SpringTest2Application.class);
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringTest2Application.class, args);
@@ -40,7 +41,29 @@ public class SpringTest2Application implements CommandLineRunner{
 		
 		// Insert in ITEM table
 		Item item1 = new Item();
-		item1.setId(1);
+		item1.setItemId(1);
+		item1.setItemDesc("Tooth paste");
+		item1.setItemName("Colgate");
+		log.info("Item created - " + item1);
+		
+		Price price1 = new Price();
+		price1.setPriceAmt(5);
+		price1.setPriceDesc("Paste price");
+		price1.getPriceKey().setPriceId(12);
+		price1.getPriceKey().setItemId(1);
+		log.info("Price created - " + price1);
+		price1.setItemEntity(item1);
+		//item1.setPriceEntity(price1);
+		log.info("Item created done- " + item1);
+		log.info("Price created done- " + price1);
+		item1.getPriceEntity().add(price1);
+		log.info("Created new item" + item1.toString());
+		
+		//itemRepository.save(item1);
+		log.info("Item/price saved" + item1.toString());
+		
+		
+		/*item1.setId(1);
 		item1.setItemname("Item1");
 		item1.setItemdesc("item1 description");
 		
@@ -79,7 +102,9 @@ public class SpringTest2Application implements CommandLineRunner{
 		
 		priceRepository.save(price2);
 		
+//		Iterable<Item> result = itemRepository.findById(1);
 		
-		
+//		System.out.println("Result - " + result);		
+*/		
 	}
 }

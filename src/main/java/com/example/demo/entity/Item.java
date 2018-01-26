@@ -2,68 +2,61 @@ package com.example.demo.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Item {
 	
 	@Id
-	int id;
-	String itemname;
-	String itemdesc;
+	@GeneratedValue
+	private Integer itemId;
 	
-	@OneToMany()
-	@JoinColumn(name = "id")
-	private List<Price> prices;
+	private String itemName;
+	private String itemDesc;
 
-	public Item() {
-		
-	}
-	
-	public List<Price> getPrices() {
-		return prices;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "itemEntity")
+	private List<Price> priceEntity;
+
+	public int getItemId() {
+		return itemId;
 	}
 
-	public void setPrices(List<Price> prices) {
-		this.prices = prices;
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getItemname() {
-		return itemname;
-	}
-	public void setItemname(String itemname) {
-		this.itemname = itemname;
-	}
-	public String getItemdesc() {
-		return itemdesc;
-	}
-	public void setItemdesc(String itemdesc) {
-		this.itemdesc = itemdesc;
+	public String getItemName() {
+		return itemName;
 	}
 
-	public Item(int id, String itemname, String itemdesc, List<Price> prices) {
-		super();
-		this.id = id;
-		this.itemname = itemname;
-		this.itemdesc = itemdesc;
-		this.prices = prices;
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getItemDesc() {
+		return itemDesc;
+	}
+
+	public void setItemDesc(String itemDesc) {
+		this.itemDesc = itemDesc;
+	}
+
+	public List<Price> getPriceEntity() {
+		return priceEntity;
+	}
+
+	public void setPriceEntity(List<Price> priceEntity) {
+		this.priceEntity = priceEntity;
 	}
 
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", itemname=" + itemname + ", itemdesc=" + itemdesc + ", prices=" + prices + "]";
+		return "Item [itemId=" + itemId + ", itemName=" + itemName + ", itemDesc=" + itemDesc + ", prices=" + priceEntity
+				+ "]";
 	}
-	
-
-	
-	
 }

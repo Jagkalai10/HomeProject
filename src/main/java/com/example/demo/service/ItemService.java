@@ -17,8 +17,8 @@ public class ItemService {
 		this.itemRepository = itemRepository;
 	}
 	
-	public List<Item> getItemById(Integer Id) {
-		Iterable<Item> items = itemRepository.findById(Id);
+	public List<Item> getItemById(Integer itemId) {
+		Iterable<Item> items = itemRepository.findByItemId(itemId);
 		return (List<Item>) items;	
 	}
 }
