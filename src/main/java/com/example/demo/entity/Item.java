@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,11 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+
 @Entity
 public class Item {
+	public Item() {
+		priceEntity = new ArrayList<>();
+	}
 	
 	@Id
-	@GeneratedValue
+	//@GeneratedValue
 	private Integer itemId;
 	
 	private String itemName;

@@ -8,6 +8,6 @@ import com.example.demo.entity.Item;
 @Repository
 public interface ItemRepository extends CrudRepository<Item, Integer> {
 
-	Iterable<Item> findByItemId(int itemId);
+	Item findByItemId(int itemId);
 	
 }

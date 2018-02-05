@@ -41,13 +41,12 @@ public class JunitTest {
 
 	//private List<Item> emptyList;
 
-	private List<Item> createEmptyList() {
-		return new ArrayList<Item>();
+	private Item createEmptyList() {
+		return new Item();
 	}
 	
-	private List<Item> createPopulatedList() {
-		List<Item> result = new ArrayList<Item>();
-		result.add(new Item());
+	private Item createPopulatedList() {
+		Item result = new Item();
 		return result;
 	}
 	
@@ -63,7 +62,7 @@ public class JunitTest {
 	public void getItembyid_EmptyTest() {
 		when(itemService.getItemById(1)).thenReturn(createEmptyList());
 		
-		List<Item> result = controller.getItemById(1);
+		Item result = controller.getItemById(1);
 		
 		assertEquals(result, createEmptyList());
 		
@@ -73,7 +72,7 @@ public class JunitTest {
 	public void getItembyid_PopulatedTest() {
 		when(itemService.getItemById(1)).thenReturn(createPopulatedList());
 		
-		List<Item> result = controller.getItemById(1);
+		Item result = controller.getItemById(1);
 		System.out.println(result.toString());
 		assertThat(result.toString(), equalTo(createPopulatedList().toString()));
 		

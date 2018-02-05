@@ -15,7 +15,7 @@ import com.example.demo.repository.PriceRepository;
 @SpringBootApplication
 public class SpringTest2Application implements CommandLineRunner{
 	
-	private Logger log = LoggerFactory.getLogger("[Jag command]");
+	private Logger log = LoggerFactory.getLogger("[Jag ]");
 
 	private ItemRepository itemRepository;
 	
@@ -50,16 +50,15 @@ public class SpringTest2Application implements CommandLineRunner{
 		price1.setPriceAmt(5);
 		price1.setPriceDesc("Paste price");
 		price1.getPriceKey().setPriceId(12);
-		price1.getPriceKey().setItemId(1);
+
 		log.info("Price created - " + price1);
+		price1.getPriceKey().setItemId(item1.getItemId());
 		price1.setItemEntity(item1);
-		//item1.setPriceEntity(price1);
-		log.info("Item created done- " + item1);
 		log.info("Price created done- " + price1);
 		item1.getPriceEntity().add(price1);
 		log.info("Created new item" + item1.toString());
 		
-		//itemRepository.save(item1);
+		itemRepository.save(item1);
 		log.info("Item/price saved" + item1.toString());
 		
 		
